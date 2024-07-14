@@ -6,7 +6,7 @@ import yfinance as yf
 
 load_dotenv()
 
-emails = ['amtiavkrishna2011@gmail.com', 'papadogspapa@gmail.com', 'arjunkrishna1306@gmail.com']
+emails = ['amtiavkrishna2011@gmail.com', 'papadogspapa@gmail.com', 'arjunkrishna1306@gmail.com', 'krishna.ranjit1984@gmail.com']
 stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD',  'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI']
 
 # Gets the stock data
