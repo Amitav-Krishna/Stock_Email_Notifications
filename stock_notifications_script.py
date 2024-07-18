@@ -25,6 +25,7 @@ worksheet = sheet.get_worksheet(0)
 # Get all values from the first column after the first row
 emails = worksheet.col_values(1)[1:]
 
+print(emails)
 stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD', 'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
 
 # Gets the stock data
