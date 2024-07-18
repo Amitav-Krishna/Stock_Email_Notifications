@@ -23,10 +23,12 @@ sheet = client.open("Stock Trade Alert Signup Sheet (Responses)")
 worksheet = sheet.get_worksheet(0)
 
 # Get all values from the first column after the first row
-emails = worksheet.col_values(1)[1:]
+emails = worksheet.col_values(2)[1:]
 
-print(emails)
 stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD', 'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
+
+def verify_emails(email):
+    regex = r"[a-zA-Z0-9\+\.-]+@+[a-zA-Z0-9_\.\+-]+[a-zA-Z0-9\+\.-]"
 
 # Gets the stock data
 def get_stock_data(ticker):
@@ -81,6 +83,9 @@ if __name__ == "__main__":
                f"Low Stocks: {low_stocks}\n")
 
     for email in emails:
-        send_email(message, email)
+        if verify_emails(email) is True:
+            send_email(message, email)
+        else:
+            continue
 
 
