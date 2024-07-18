@@ -3,10 +3,24 @@ import os
 import smtplib
 import ssl
 import yfinance as yf
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 load_dotenv()
 
-emails = ['amtiavkrishna2011@gmail.com', 'papadogspapa@gmail.com', 'arjunkrishna1306@gmail.com', 'krishna.ranjit1984@gmail.com', 'aarizthegamerx2@gmail.com', 'christopher.e.smith@zoho.com']
+scope = ["https://spreadsheets.google.com/feeds", "https//www.googleapis.com/auth/drive"]
+
+
+ServiceAccountCredentials.service_account('service_account.json', scope)
+
+client = gspread.authorize(creds)
+
+sheet = client.open("Stock Trade Alert Signup Sheet (Responses)")
+
+worksheet = sheet.get_worksheet(0)
+
+emails = worksheet.col_values(1)[1:]
+
 stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD',  'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
 
 # Gets the stock data
