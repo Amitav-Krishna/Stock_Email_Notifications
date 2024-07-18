@@ -5,6 +5,7 @@ import ssl
 import yfinance as yf
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import re
 
 load_dotenv()
 
@@ -29,7 +30,7 @@ stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'S
 
 def verify_emails(email):
     regex = r"[a-zA-Z0-9\+\.-]+@+[a-zA-Z0-9_\.\+-]+[a-zA-Z0-9\+\.-]"
-
+    return re.search(regex, email)
 # Gets the stock data
 def get_stock_data(ticker):
     stock_ticker = yf.Ticker(ticker)
@@ -83,7 +84,7 @@ if __name__ == "__main__":
                f"Low Stocks: {low_stocks}\n")
 
     for email in emails:
-        if verify_emails(email) is True:
+        if verify_emails(email):
             send_email(message, email)
         else:
             continue
