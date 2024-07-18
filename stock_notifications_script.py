@@ -8,20 +8,24 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 load_dotenv()
 
-scope = ["https://spreadsheets.google.com/feeds", "https//www.googleapis.com/auth/drive"]
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
+# Load the credentials
+creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
 
-ServiceAccountCredentials.service_account('service_account.json', scope)
-
+# Authorize the client
 client = gspread.authorize(creds)
 
+# Open the Google Sheet by its name
 sheet = client.open("Stock Trade Alert Signup Sheet (Responses)")
 
+# Select the first sheet
 worksheet = sheet.get_worksheet(0)
 
+# Get all values from the first column after the first row
 emails = worksheet.col_values(1)[1:]
 
-stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD',  'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
+stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD', 'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
 
 # Gets the stock data
 def get_stock_data(ticker):
@@ -34,7 +38,7 @@ def get_stock_data(ticker):
 
     return price, week_52_high, week_52_low
 
-# Checks if the price is within 10% of the 52 week high or low['Close'['Close'
+# Checks if the price is within 10% of the 52 week high or low
 def check_low_high(stocks):
     high_stocks = ""
     low_stocks = ""
@@ -56,8 +60,8 @@ def check_low_high(stocks):
 def send_email(message, email):
     password = os.getenv('EMAIL_PASSWORD')
     if not password:
-       print("Error: Email password not set in .env file")
-       return
+        print("Error: Email password not set in .env file")
+        return
     sender_email = "python.testing.amitav@gmail.com"  
 
     context = ssl.create_default_context()
@@ -77,4 +81,5 @@ if __name__ == "__main__":
 
     for email in emails:
         send_email(message, email)
+
 
