@@ -8,4 +8,4 @@ __pycache__/
 .idea/
 .DS_Store
 Thumbs.db
-/root/Stock_Email_Notifications/service_account.json
+service_account.json
