@@ -12,7 +12,7 @@ load_dotenv()
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 # Load the credentials
-creds = ServiceAccountCredentials.from_json_keyfile_name('service_account.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('/root/Stock_Email_Notifications/service_account.json', scope)
 
 # Authorize the client
 client = gspread.authorize(creds)
