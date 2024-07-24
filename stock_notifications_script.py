@@ -80,8 +80,8 @@ def send_email(message, email):
 if __name__ == "__main__":
     high_stocks, low_stocks = check_low_high(stocks)
     message = (f"Subject: Daily Stock Alert\n\n"
-               f"Reccomended Sells/Shorts: {high_stocks}\n"
-               f"Reccomended Buys: {low_stocks}\n\n\n")
+               f"Recommended Sells/Shorts: {high_stocks}\n"
+               f"Recommended Buys: {low_stocks}\n\n\n")
 
     for email in emails:
         if verify_emails(email):
