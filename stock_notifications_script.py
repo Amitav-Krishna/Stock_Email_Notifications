@@ -24,7 +24,7 @@ sheet = client.open("Stock Trade Alert Signup Sheet (Responses)")
 worksheet = sheet.get_worksheet(0)
 
 # Get all values from the first column after the first row
-emails = worksheet.col_values(2)[1:]
+emails = ['amtiavkrishna2011@gmail.com']
 
 stocks = ['AAPL', 'TSLA', 'PLTR', 'META', 'GOOG', 'SPY', 'QQQ', 'TQQQ', 'KO', 'SBUX', 'GLD', 'JNJ', 'AMGN', 'MRNA', 'NOW', 'AAL', 'SOFI', 'AMZN']
 
@@ -52,11 +52,11 @@ def check_low_high(stocks):
 
         # Checks if the 52 Week High is within 10% of current price
         if high_52week <= current_price * 1.1:
-            high_stocks += (ticker + f'({current_price}), ')
+            high_stocks += (ticker + f' (${int(current_price)}), ')
 
         # Checks if the 52 Week Low is within 10% of current price
         elif low_52week >= current_price * 0.9:
-            (ticker + f'({current_price}), ')
+            low_stocks += (ticker + f' (${int(current_price)}), ')
     return high_stocks.strip(', '), low_stocks.strip(', ')
 
 # Function to send the message
