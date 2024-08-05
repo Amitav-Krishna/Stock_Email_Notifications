@@ -52,12 +52,11 @@ def check_low_high(stocks):
 
         # Checks if the 52 Week High is within 10% of current price
         if high_52week <= current_price * 1.1:
-            high_stocks += (ticker + ', ')
+            high_stocks += (ticker + f'({current_price}), ')
 
         # Checks if the 52 Week Low is within 10% of current price
         elif low_52week >= current_price * 0.9:
-            low_stocks += (ticker + ', ')
-    
+            (ticker + f'({current_price}), ')
     return high_stocks.strip(', '), low_stocks.strip(', ')
 
 # Function to send the message
